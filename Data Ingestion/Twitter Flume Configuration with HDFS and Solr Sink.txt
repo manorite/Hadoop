@@ -1,0 +1,25 @@
+Steps to get data from Twitter using Flume 
+
+1)	https://apps.twitter.com
+2)	Create a twitter app
+3)	Create my access token 
+4)	Consumer Key (API Key) --------------------------------
+5)	Consumer Secret (API Secret)	------------------------------------------------------
+6)	Access Token	----------------------------------------------------------
+7)	Access Token Secret	------------------------------------------------------------
+8)	Download flume (if not installed on the Virtual Machine)
+a.	wget http://archive.apache.org/dist/flume/1.4.0/apache-flume-1.4.0-bin.tar.gz
+b.	tar -xvf apache-flume-1.4.0-bin.tar.gz
+c.	download flume-sources-1.0-SNAPSHOTS.jar (This is the JAR file required) 
+d.	sudo mv Downloads/flume-sources-1.0-SNAPSHOT.jar /usr/lib/apache-flume-1.4.0-bin/lib/ (location for all the Jar files located)
+e.	sudo cp conf/flume-env.sh.template conf/flume-env.sh
+f.	sudo gedit conf/flume-env.sh
+g.	change Flume_classpath (flume-sources-1.0-SNAPSHOT.jar) and Java_home (to java environment jdk1.7.0_67-cloudera)
+9)	Generate Twitter.conf file (attached)
+10)	Change permissions
+11)	sudo chmod -R 755 /usr/lib/apache-flume-1.4.0-bin/
+12)	Start Fetching data 
+13)	/usr/lib/flume-ng/bin/flume-ng agent -c -conf /usr/lib/fume-ng/conf -f /usr/lib/flume-ng/conf/twitter.conf -Dflume.root.logger=DEBUG,console -n agent1
+14)	Check data in HDFS 
+15)	Hdfs dfs -ls user/flume/tweets
+
